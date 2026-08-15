@@ -21,7 +21,7 @@ export default async function handler(req, res) {
       Math.floor(10000 + Math.random() * 90000);
 
     await resend.emails.send({
-      from: 'Z&Z iPhone Repairs <onboarding@resend.dev>',
+      from: 'Z&Z iPhone Repairs <bookings@zziphonerepairs.com.au>',
       to: 'info@zziphonerepaires.com.au',
       subject: `New Repair Booking - ${ref}`,
       html: `
