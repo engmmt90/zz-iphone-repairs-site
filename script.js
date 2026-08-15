@@ -40,10 +40,11 @@ bookingForm?.addEventListener('submit', async (e) => {
     }
 
     result.innerHTML = `
-      <strong>Request received.</strong><br>
-      Your reference number is <strong>${data.ref}</strong>.
-      Z&Z iPhone Repairs will contact you to confirm the booking.
-    `;
+  <strong>Request received.</strong><br>
+  Your reference number is <strong>${data.ref}</strong>.<br><br>
+  We’ve sent a confirmation email if you provided an email address.<br>
+  Z&Z iPhone Repairs will contact you shortly to confirm the booking.
+`;
 
     bookingForm.reset();
 
