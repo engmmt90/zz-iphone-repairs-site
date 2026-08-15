@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
-
+import { neon } from '@neondatabase/serverless';
 const resend = new Resend(process.env.RESEND_API_KEY);
-
+const sql = neon(process.env.STORAGE_URL);
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -19,7 +19,30 @@ export default async function handler(req, res) {
       new Date().getFullYear() +
       '-' +
       Math.floor(10000 + Math.random() * 90000);
-
+await sql`
+  INSERT INTO repair_requests (
+    reference,
+    name,
+    phone,
+    email,
+    device,
+    issue,
+    message,
+    preferred_date,
+    status
+  )
+  VALUES (
+    ${ref},
+    ${name},
+    ${phone},
+    ${email || null},
+    ${device || null},
+    ${issue || null},
+    ${message || null},
+    ${preferredDate || null},
+    'Received'
+  )
+`;
     const { data, error } = await resend.emails.send({
   from: 'Z&Z iPhone Repairs <bookings@zziphonerepairs.com.au>',
   to: 'info@zziphonerepairs.com.au',
