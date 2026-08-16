@@ -1,5 +1,5 @@
 import { neon } from '@neondatabase/serverless';
-
+import { Resend } from 'resend';
 const sql = neon(process.env.POSTGRES_URL);
 
 export default async function handler(req, res) {
