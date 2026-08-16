@@ -58,10 +58,42 @@ bookingForm?.addEventListener('submit', async (e) => {
   }
 });
 
-document.querySelector('#trackForm')?.addEventListener('submit',e=>{
+document.querySelector('#trackForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
-  const ref=document.querySelector('#ref').value.trim();
-  const out=document.querySelector('#trackResult');
-  out.hidden=false;
-  out.innerHTML=`<strong>Reference ${ref}</strong><br>Online repair tracking will be connected to the Z&Z business dashboard before launch.`;
+
+  const ref = document.querySelector('#reference')?.value.trim();
+  const out = document.querySelector('#trackResult');
+
+  if (!ref || !out) return;
+
+  out.hidden = false;
+  out.innerHTML = 'Checking repair status...';
+
+  try {
+    const response = await fetch(
+      `/api/track?reference=${encodeURIComponent(ref)}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Unable to find repair request');
+    }
+
+    const repair = data.repair;
+
+    out.innerHTML = `
+      <strong>Reference ${repair.reference}</strong><br>
+      Status: <strong>${repair.status}</strong><br>
+      Device: ${repair.device || 'Not provided'}<br>
+      Repair: ${repair.issue || 'Not provided'}
+    `;
+  } catch (error) {
+    console.error(error);
+
+    out.innerHTML = `
+      <strong>Repair request not found.</strong><br>
+      Please check your reference number and try again.
+    `;
+  }
 });
