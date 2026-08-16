@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Z&Z Repair Admin</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      color: #172033;
+    }
+
+    .admin {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    h1 {
+      color: #2454a6;
+      margin-bottom: 5px;
+    }
+
+    .subtitle {
+      color: #667085;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 24px;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.08);
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin: 18px 0 8px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 15px;
+      font-size: 16px;
+      border: 1px solid #ccd3df;
+      border-radius: 10px;
+      background: white;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 16px;
+      border: 0;
+      border-radius: 10px;
+      background: #2454a6;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+      background: #eef4ff;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="admin">
+
+    <h1>Z&Z Repair Admin</h1>
+    <p class="subtitle">Update customer repair status</p>
+
+    <div class="card">
+
+      <label for="reference">Repair Reference</label>
+
+      <input
+        id="reference"
+        type="text"
+        placeholder="Example: ZZ-2026-50196"
+      >
+
+      <label for="status">New Status</label>
+
+      <select id="status">
+        <option value="Received">Received</option>
+        <option value="In Progress">In Progress</option>
+        <option value="Waiting for Parts">Waiting for Parts</option>
+        <option value="Ready for Pickup">Ready for Pickup</option>
+        <option value="Completed">Completed</option>
+      </select>
+
+      <button id="updateBtn">
+        Update Repair Status
+      </button>
+
+      <div id="result" hidden></div>
+
+    </div>
+
+  </main>
+
+  <script>
+    const updateBtn = document.getElementById('updateBtn');
+    const result = document.getElementById('result');
+
+    updateBtn.addEventListener('click', async () => {
+
+      const reference =
+        document.getElementById('reference').value.trim();
+
+      const status =
+        document.getElementById('status').value;
+
+      if (!reference) {
+        result.hidden = false;
+        result.textContent = 'Please enter a repair reference.';
+        return;
+      }
+
+      result.hidden = false;
+      result.textContent = 'Updating...';
+
+      try {
+
+        const response = await fetch('/api/update-status', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            reference,
+            status
+          })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Update failed');
+        }
+
+        result.innerHTML =
+          '<strong>Status updated successfully.</strong><br>' +
+          reference + ' → ' + status;
+
+      } catch (error) {
+
+        result.textContent =
+          'Error: ' + error.message;
+
+      }
+    });
+  </script>
+
+</body>
+</html>
