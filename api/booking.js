@@ -1,7 +1,7 @@
 import { Resend } from 'resend';
 import { neon } from '@neondatabase/serverless';
 const resend = new Resend(process.env.RESEND_API_KEY);
-const sql = neon(process.env.STORAGE_URL);
+const sql = neon(process.env.POSTGRES_URL);
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
