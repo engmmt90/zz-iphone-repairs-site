@@ -118,7 +118,8 @@
   <script>
     const updateBtn = document.getElementById('updateBtn');
     const result = document.getElementById('result');
-
+let adminToken = '';
+ adminToken = prompt('Enter admin password:') || '';   
     updateBtn.addEventListener('click', async () => {
 
       const reference =
@@ -142,7 +143,7 @@
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-
+'x-admin-token': adminToken,
 
           },
           body: JSON.stringify({
