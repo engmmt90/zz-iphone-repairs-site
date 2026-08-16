@@ -25,6 +25,7 @@ if (!process.env.ADMIN_TOKEN || adminToken !== process.env.ADMIN_TOKEN) {
     const allowedStatuses = [
       'Received',
       'In Progress',
+      'Waiting for Parts',
       'Ready for Pickup',
       'Completed'
     ];
