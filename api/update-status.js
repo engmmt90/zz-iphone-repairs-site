@@ -46,6 +46,7 @@ if (!process.env.ADMIN_TOKEN || adminToken !== process.env.ADMIN_TOKEN) {
       RETURNING
         reference,
         name,
+        email,
         device,
         issue,
         status,
