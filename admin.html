@@ -80,7 +80,7 @@
 
 <body>
 
-  <main class="admin">
+  <main class="admin" id="adminPanel" hidden>
 
     <h1>Z&Z Repair Admin</h1>
     <p class="subtitle">Update customer repair status</p>
@@ -118,8 +118,8 @@
   <script>
     const updateBtn = document.getElementById('updateBtn');
     const result = document.getElementById('result');
-let adminToken = '';
- adminToken = prompt('Enter admin password:') || '';   
+  const adminPanel = document.getElementById('adminPanel');
+  
     updateBtn.addEventListener('click', async () => {
 
       const reference =
