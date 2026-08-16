@@ -61,7 +61,7 @@ bookingForm?.addEventListener('submit', async (e) => {
 document.querySelector('#trackForm')?.addEventListener('submit', async (e) => {
   e.preventDefault();
 
-  const ref = document.querySelector('#reference')?.value.trim();
+  const ref = document.querySelector('#ref')?.value.trim();
   const out = document.querySelector('#trackResult');
 
   if (!ref || !out) return;
