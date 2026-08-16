@@ -86,7 +86,7 @@
     <p class="subtitle">Update customer repair status</p>
 
     <div class="card">
-
+<div id="repairsList"></div>
       <label for="reference">Repair Reference</label>
 
       <input
@@ -119,7 +119,50 @@
     const updateBtn = document.getElementById('updateBtn');
     const result = document.getElementById('result');
   const adminPanel = document.getElementById('adminPanel');
+    const repairsList = document.getElementById('repairsList');
   const adminToken = prompt('Enter admin password:');
+    async function loadRepairs() {
+  repairsList.innerHTML = '<p>Loading repair requests...</p>';
+
+  try {
+    const response = await fetch('/api/repairs', {
+      headers: {
+        'x-admin-token': adminToken
+      }
+    });
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || 'Unable to load repairs');
+    }
+
+    if (!data.repairs || data.repairs.length === 0) {
+      repairsList.innerHTML = '<p>No repair requests found.</p>';
+      return;
+    }
+
+    repairsList.innerHTML = data.repairs.map(repair => `
+      <button
+        type="button"
+        onclick="selectRepair('${repair.reference}', '${repair.status}')"
+        style="width:100%; margin-bottom:10px; text-align:left;"
+      >
+        ${repair.reference} — ${repair.name} — ${repair.status}
+      </button>
+    `).join('');
+
+  } catch (error) {
+    repairsList.innerHTML = `<p>Error: ${error.message}</p>`;
+  }
+}
+
+function selectRepair(reference, status) {
+  document.getElementById('reference').value = reference;
+  document.getElementById('status').value = status;
+}
+
+loadRepairs();
     updateBtn.addEventListener('click', async () => {
 
       const reference =
