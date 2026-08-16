@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, device, issue, message } = req.body;
+    const { name, email, phone, device, issue, message, preferredDate } = req.body;
 
     if (!name || !phone) {
       return res.status(400).json({ error: 'Missing required fields' });
