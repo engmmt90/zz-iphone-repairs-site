@@ -8,8 +8,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone, device, issue, message, preferredDate } = req.body;
-
+   const { name, email, phone, device, issue, message, preferredDate, requestType } = req.body;
+const isQuote = requestType === 'quote';
     if (!name || !phone) {
       return res.status(400).json({ error: 'Missing required fields' });
     }
