@@ -14,15 +14,16 @@ bookingForm?.addEventListener('submit', async (e) => {
   const formData = new FormData(bookingForm);
   const form = Object.fromEntries(formData.entries());
 
-  const payload = {
-    name: form.name || form.fullName || form.fullname || '',
-    phone: form.phone || form.phoneNumber || '',
-    email: form.email || '',
-    device: form.device || form.model || form.iphoneModel || '',
-    issue: form.issue || form.service || form.repairService || '',
-    message: form.message || form.problem || form.description || '',
-    preferredDate: form.preferredDate || form.date || ''
-  };
+ const payload = {
+  name: form.name || form.fullName || form.fullname || '',
+  phone: form.phone || form.phoneNumber || '',
+  email: form.email || '',
+  requestType: form.requestType || 'repair',
+  device: form.device || form.model || form.iphoneModel || '',
+  issue: form.issue || form.service || form.repairService || '',
+  message: form.message || form.problem || form.description || '',
+  preferredDate: form.preferredDate || form.date || ''
+};
 
   try {
     const response = await fetch('/api/booking', {
