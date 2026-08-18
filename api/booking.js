@@ -71,8 +71,9 @@ console.log('Resend success:', data);
   const { error: customerEmailError } = await resend.emails.send({
     from: 'Z&Z iPhone Repairs <bookings@zziphonerepairs.com.au>',
     to: email,
-    subject: `We received your repair request - ${ref}`,
-    html: `
+    subject: isQuote
+  ? `We received your quote request - ${ref}`
+  : `We received your repair request - ${ref}`, `
       <h2>Thanks for choosing Z&Z iPhone Repairs</h2>
 
       <p>Hi ${name},</p>
