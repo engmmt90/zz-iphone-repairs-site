@@ -74,6 +74,7 @@ console.log('Resend success:', data);
     subject: isQuote
   ? `We received your quote request - ${ref}`
   : `We received your repair request - ${ref}`, `
+  html: `
       <h2>Thanks for choosing Z&Z iPhone Repairs</h2>
 
       <p>Hi ${name},</p>
