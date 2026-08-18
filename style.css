@@ -182,3 +182,10 @@ padding:4px 14px;
     line-height:1.05;
   }
 }
+@media (max-width:900px){
+  .nav nav.open a{
+    padding:10px 4px;
+    margin:0;
+    line-height:1.2;
+  }
+}
