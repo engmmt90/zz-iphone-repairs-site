@@ -146,9 +146,13 @@
   <button
     type="button"
     onclick="selectRepair('${repair.reference}', '${repair.status}')"
-    style="width:100%; margin-bottom:10px;"
+    style="width:100%; margin-bottom:12px; padding:16px; text-align:left;"
   >
-    ${repair.reference} — ${repair.name} — ${repair.status}
+    <strong>${repair.reference}</strong><br>
+    Customer: ${repair.name || 'Not provided'}<br>
+    Device: ${repair.device || 'Not provided'}<br>
+    Repair: ${repair.issue || 'Not provided'}<br>
+    Status: <strong>${repair.status}</strong>
   </button>
 `).join('');
 
