@@ -143,14 +143,14 @@
     }
 
     repairsList.innerHTML = data.repairs.map(repair => `
-      <button
-        type="button"
-        onclick="selectRepair('${repair.reference}', '${repair.status}')"
-        style="width:100%; margin-bottom:10px; text-align:left;"
-      >
-        ${repair.reference} — ${repair.name} — ${repair.status}
-      </button>
-    `).join('');
+  <button
+    type="button"
+    onclick="selectRepair('${repair.reference}', '${repair.status}')"
+    style="width:100%; margin-bottom:10px;"
+  >
+    ${repair.reference} — ${repair.name} — ${repair.status}
+  </button>
+`).join('');
 
   } catch (error) {
     repairsList.innerHTML = `<p>Error: ${error.message}</p>`;
