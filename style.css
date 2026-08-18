@@ -194,3 +194,14 @@ padding:4px 14px;
     gap:0;
   }
 }
+@media (max-width:900px){
+  .nav nav.open{
+    padding:8px 18px;
+  }
+
+  .nav nav.open a{
+    padding:7px 4px !important;
+    margin:0 !important;
+    min-height:0 !important;
+  }
+}
