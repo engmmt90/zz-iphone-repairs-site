@@ -10,7 +10,7 @@ bookingForm?.addEventListener('submit', async (e) => {
 
   result.hidden = false;
   result.innerHTML =
-  form.requestType === 'quote'
+  document.getElementById('requestType')?.value === 'quote'
     ? 'Sending your free quote request...'
     : 'Sending your repair request...';
 
