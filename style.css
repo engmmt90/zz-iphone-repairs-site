@@ -32,9 +32,11 @@ footer{background:#07111e;color:#aebdce;padding:45px 0 20px}.footer-grid{display
     align-items:center;
   }
   .brand img{
-    width:150px;
-    height:auto;
-    max-height:none;
+  width:150px;
+  height:auto;
+  max-height:none;
+  margin-left:-35px;
+}
   }
   .menu-btn{
   margin-left:auto;
