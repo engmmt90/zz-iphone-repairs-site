@@ -21,3 +21,18 @@ footer{background:#07111e;color:#aebdce;padding:45px 0 20px}.footer-grid{display
   object-fit:contain;
   display:block;
 }
+@media (max-width:600px){
+  .site-header{
+    padding-top:20px;
+  }
+  .nav{
+    height:auto;
+    min-height:120px;
+    align-items:center;
+  }
+  .brand img{
+    width:150px;
+    height:auto;
+    max-height:none;
+  }
+}
