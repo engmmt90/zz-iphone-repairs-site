@@ -78,7 +78,10 @@ console.log('Resend success:', data);
 
       <p>Hi ${name},</p>
 
-      <p>We’ve received your iPhone repair request.</p>
+    ${isQuote
+  ? `<p>We’ve received your free quote request.</p>`
+  : `<p>We’ve received your iPhone repair request.</p>`
+}
 
       <p><strong>Your reference number:</strong> ${ref}</p>
       <p><strong>Device:</strong> ${device || 'Not provided'}</p>
