@@ -146,13 +146,28 @@
   <button
     type="button"
     onclick="selectRepair('${repair.reference}', '${repair.status}')"
-    style="width:100%; margin-bottom:12px; padding:16px; text-align:left;"
+    style="
+      width:100%;
+      margin-bottom:12px;
+      padding:16px;
+      text-align:left;
+      background:#f8fafc;
+      color:#172033;
+      border:1px solid #dbe3ef;
+      border-radius:14px;
+      box-shadow:0 2px 8px rgba(0,0,0,.05);
+    "
   >
-    <strong>${repair.reference}</strong><br>
-    Customer: ${repair.name || 'Not provided'}<br>
-    Device: ${repair.device || 'Not provided'}<br>
-    Repair: ${repair.issue || 'Not provided'}<br>
-    Status: <strong>${repair.status}</strong>
+    <div style="font-size:18px; font-weight:700; color:#2454a6; margin-bottom:8px;">
+      ${repair.reference}
+    </div>
+
+    <div><strong>Customer:</strong> ${repair.name || 'Not provided'}</div>
+    <div><strong>Device:</strong> ${repair.device || 'Not provided'}</div>
+    <div><strong>Repair:</strong> ${repair.issue || 'Not provided'}</div>
+    <div style="margin-top:6px;">
+      <strong>Status:</strong> ${repair.status}
+    </div>
   </button>
 `).join('');
 
