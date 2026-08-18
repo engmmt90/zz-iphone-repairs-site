@@ -40,10 +40,15 @@ bookingForm?.addEventListener('submit', async (e) => {
       throw new Error(data.error || 'Unable to send booking');
     }
 
-    result.innerHTML = `
-  <strong>Request received.</strong><br>
+   const isQuote = payload.requestType === 'quote';
+
+result.innerHTML = isQuote ? `
+  <strong>Free quote request received.</strong><br>
   Your reference number is <strong>${data.ref}</strong>.<br><br>
-  We’ve sent a confirmation email if you provided an email address.<br>
+  We’ll review your iPhone model and repair details and contact you shortly with pricing.
+` : `
+  <strong>Repair booking request received.</strong><br>
+  Your reference number is <strong>${data.ref}</strong>.<br><br>
   Z&Z iPhone Repairs will contact you shortly to confirm the booking.
 `;
 
