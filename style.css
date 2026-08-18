@@ -59,3 +59,12 @@ footer{background:#07111e;color:#aebdce;padding:45px 0 20px}.footer-grid{display
   line-height:1;
   box-shadow:0 4px 12px rgba(11,99,206,.08);
 }
+.icon{
+  color:#0b63ce;
+}
+
+.icon svg{
+  width:36px;
+  height:36px;
+  display:block;
+}
