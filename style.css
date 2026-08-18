@@ -24,7 +24,7 @@ footer{background:#07111e;color:#aebdce;padding:45px 0 20px}.footer-grid{display
 @media (max-width:600px){
   .site-header{
     padding-top:6px;
-    padding-left:10px;
+    padding-left:20px;
   }
   .nav{
     height:auto;
