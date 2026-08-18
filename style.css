@@ -45,3 +45,17 @@ footer{background:#07111e;color:#aebdce;padding:45px 0 20px}.footer-grid{display
   padding:8px 0;
 }
 }
+/* Professional service icons */
+.icon{
+  width:56px;
+  height:56px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#eef5ff;
+  border:1px solid #d9e7fb;
+  border-radius:16px;
+  font-size:28px;
+  line-height:1;
+  box-shadow:0 4px 12px rgba(11,99,206,.08);
+}
