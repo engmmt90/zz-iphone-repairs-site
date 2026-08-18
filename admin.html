@@ -204,7 +204,7 @@ loadRepairs();
         result.innerHTML =
           '<strong>Status updated successfully.</strong><br>' +
           reference + ' → ' + status;
-
+await loadRepairs();
       } catch (error) {
 
         result.textContent =
