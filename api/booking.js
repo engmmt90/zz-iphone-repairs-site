@@ -85,9 +85,15 @@ console.log('Resend success:', data);
 
       <p><strong>Your reference number:</strong> ${ref}</p>
       <p><strong>Device:</strong> ${device || 'Not provided'}</p>
-      <p><strong>Repair:</strong> ${issue || 'Not provided'}</p>
+     ${isQuote
+  ? `<p><strong>Quote service:</strong> ${issue || 'Not provided'}</p>`
+  : `<p><strong>Repair:</strong> ${issue || 'Not provided'}</p>`
+}
 
-      <p>We’ll review your request and contact you shortly to confirm the repair details.</p>
+     ${isQuote
+  ? `<p>We’ll review your request and contact you shortly with your personalised quote.</p>`
+  : `<p>We’ll review your request and contact you shortly to confirm the repair details.</p>`
+}
 
       <p>
         Z&Z iPhone Repairs<br>
