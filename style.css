@@ -205,3 +205,19 @@ padding:4px 14px;
     min-height:0 !important;
   }
 }
+@media (max-width:900px){
+  .nav nav.open{
+    left:6%;
+    right:6%;
+    top:68px;
+    padding:8px 18px;
+    gap:0;
+  }
+
+  .nav nav.open a{
+    padding:7px 4px !important;
+    margin:0 !important;
+    min-height:0 !important;
+    line-height:1.2;
+  }
+}
