@@ -9,7 +9,10 @@ bookingForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
 
   result.hidden = false;
-  result.innerHTML = 'Sending your repair request...';
+  result.innerHTML =
+  form.requestType === 'quote'
+    ? 'Sending your free quote request...'
+    : 'Sending your repair request...';
 
   const formData = new FormData(bookingForm);
   const form = Object.fromEntries(formData.entries());
