@@ -27,7 +27,7 @@ footer{background:#07111e;color:#aebdce;padding:45px 0 20px}.footer-grid{display
   }
   .nav{
     height:auto;
-    min-height:96px;
+    min-height:90px;
     align-items:center;
   }
   .brand img{
