@@ -221,3 +221,13 @@ padding:4px 14px;
     line-height:1.2;
   }
 }
+@media (max-width:900px){
+  .nav nav.open{
+    top:64px;
+    padding:6px 18px;
+  }
+
+  .nav nav.open a{
+    padding:5px 4px !important;
+  }
+}
