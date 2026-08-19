@@ -13,7 +13,7 @@ function updateBookingText() {
   const isQuote = requestType?.value === 'quote';
 if (preferredDateLabel) {
   preferredDateLabel.style.display = isQuote ? 'none' : '';
-}
+}if (preferredDateInput) preferredDateInput.required = !isQuote;
   if (formNote) {
     formNote.textContent = isQuote
       ? 'This is a free quote request. We’ll contact you shortly with pricing.'
