@@ -46,9 +46,9 @@ await sql`
     const { data, error } = await resend.emails.send({
   from: 'Z&Z iPhone Repairs <bookings@zziphonerepairs.com.au>',
   to: 'info@zziphonerepairs.com.au',
-  subject: `New Repair Booking - ${ref}`,
+ subject: isQuote ? `New Quote Request - ${ref}` : `New Repair Booking - ${ref}`,
   html: `
-    <h2>New Repair Booking</h2>
+   <h2>${isQuote ? 'New Quote Request' : 'New Repair Booking'}</h2>
     <p><strong>Reference:</strong> ${ref}</p>
     <p><strong>Name:</strong> ${name}</p>
     <p><strong>Email:</strong> ${email || 'Not provided'}</p>
