@@ -4,7 +4,25 @@ nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nav.classLi
 
 const bookingForm = document.querySelector('#bookingForm');
 const result = document.querySelector('#bookingResult');
+const formNote = document.querySelector('#formNote');
+const requestType = document.querySelector('#requestType');
+const submitBtn = bookingForm?.querySelector('button[type="submit"]');
+function updateBookingText() {
+  const isQuote = requestType?.value === 'quote';
 
+  if (formNote) {
+    formNote.textContent = isQuote
+      ? 'This is a free quote request. We’ll contact you shortly with pricing.'
+      : 'This is a booking request. Your appointment is confirmed only after Z&Z contacts you.';
+  }
+
+  if (submitBtn) {
+    submitBtn.textContent = isQuote
+      ? 'Submit Free Quote Request'
+      : 'Submit Repair Request';
+  }
+}
+document.querySelectorAll('a[href="#book"]').forEach(link => link.addEventListener('click', () => setTimeout(updateBookingText, 0)));
 bookingForm?.addEventListener('submit', async (e) => {
   e.preventDefault();
 
