@@ -67,7 +67,44 @@ if (error) {
 }
 
 console.log('Resend success:', data);
-    
+    if (email) {
+  const customerSubject = isQuote
+    ? `We received your quote request - ${ref}`
+    : `We received your repair request - ${ref}`;
+
+  const customerTitle = isQuote
+    ? 'Free Quote Request Received'
+    : 'Repair Request Received';
+
+  const customerMessage = isQuote
+    ? 'We’ll review your iPhone model and repair details and contact you shortly with your personalised quote.'
+    : 'We’ll review your request and contact you shortly to confirm the repair details.';
+
+  const { error: customerEmailError } = await resend.emails.send({
+    from: 'Z&Z iPhone Repairs <bookings@zziphonerepairs.com.au>',
+    to: email,
+    subject: customerSubject,
+    html: `
+      <h2>${customerTitle}</h2>
+      <p>Hi ${name},</p>
+      <p>Thank you for contacting Z&Z iPhone Repairs.</p>
+      <p><strong>Your reference number:</strong> ${ref}</p>
+      <p><strong>Device:</strong> ${device || 'Not provided'}</p>
+      <p><strong>Service:</strong> ${issue || 'Not provided'}</p>
+      <p>${customerMessage}</p>
+      <p>
+        Z&Z iPhone Repairs<br>
+        +61 401 825 549<br>
+        info@zziphonerepairs.com.au<br>
+        zziphonerepairs.com.au
+      </p>
+    `,
+  });
+
+  if (customerEmailError) {
+    console.error('Customer confirmation email error:', customerEmailError);
+  }
+}
     return res.status(200).json({
       success: true,
       ref,
