@@ -7,9 +7,13 @@ const result = document.querySelector('#bookingResult');
 const formNote = document.querySelector('#formNote');
 const requestType = document.querySelector('#requestType');
 const submitBtn = bookingForm?.querySelector('button[type="submit"]');
+const preferredDateInput = bookingForm?.querySelector('input[name="date"]');
+const preferredDateLabel = preferredDateInput?.closest('label');
 function updateBookingText() {
   const isQuote = requestType?.value === 'quote';
-
+if (preferredDateLabel) {
+  preferredDateLabel.style.display = isQuote ? 'none' : '';
+}
   if (formNote) {
     formNote.textContent = isQuote
       ? 'This is a free quote request. We’ll contact you shortly with pricing.'
