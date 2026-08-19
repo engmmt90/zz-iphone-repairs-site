@@ -111,27 +111,39 @@ document.querySelector('#trackForm')?.addEventListener('submit', async (e) => {
       throw new Error(data.error || 'Unable to find repair request');
     }
 
-    const repair = data.repair;
+  const repair = data.repair;
 
-    out.innerHTML = `
-      <strong>Reference ${repair.reference}</strong><br>
-      Status: <strong>${repair.status}</strong><br>
-      Device: ${repair.device || 'Not provided'}<br>
-      Repair: ${repair.issue || 'Not provided'}
-    `;
-  } catch (error) {
-    console.error(error);
+const statusKey = (repair.status || 'Received').toLowerCase();
 
-    out.innerHTML = `
-      <strong>Repair request not found.</strong><br>
-      Please check your reference number and try again.
-    `;
-  }
-});
-if ('scrollRestoration' in history) {
-  history.scrollRestoration = 'manual';
+const statusLabels = {
+  received: 'Request Received',
+  diagnosing: 'Diagnosing',
+  'awaiting parts': 'Awaiting Parts',
+  repairing: 'Repairing',
+  ready: 'Ready for Collection',
+  completed: 'Completed'
+};
+
+const statusText =
+  statusLabels[statusKey] ||
+  repair.status ||
+  'Request Received';
+
+out.innerHTML = `
+  <strong>Reference: ${repair.reference}</strong><br>
+  Status: <strong>${statusText}</strong><br>
+  Device: ${repair.device || 'Not provided'}<br>
+  Repair: ${repair.issue || 'Not provided'}
+`;
+ } catch (error) {
+  console.error(error);
+
+  out.innerHTML = `
+    <strong>Repair request not found.</strong><br>
+    Please check your reference number and try again.
+  `;
 }
-
+});   
 window.addEventListener('load', () => {
   window.scrollTo(0, 0);
 });
